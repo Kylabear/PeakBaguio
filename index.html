@@ -23,15 +23,14 @@
 <body class="bg-gray-100">
 
     <!-- NB -->
-    <nav class="bg-white shadow-md">
+    <nav class="bg-white shadow-md relative z-20">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <img src="img/logoPB.png" alt="Logo" id="logo" class="h-12" >
+            <img src="img/logoPB.png" alt="Logo" id="logo" class="h-12">
             <h1 href="#" class="text-4xl font-bold text-green-600">Peak Baguio</h1>
-            <img
             <ul class="flex space-x-6">
                 <li class="relative group">
                     <a href="#" class="text-gray-700 hover:text-green-600">Explore Baguio</a>
-                    <ul class="absolute hidden group-hover:block bg-white shadow-md mt-2 rounded-md">
+                    <ul class="absolute hidden group-hover:block bg-white shadow-md mt-2 rounded-md z-30">
                         <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Nature & Parks</a></li>
                         <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Cultural Sites</a></li>
                         <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Shopping</a></li>
@@ -41,7 +40,7 @@
                 <li><a href="#" class="text-gray-700 hover:text-green-600">Popular Spots</a></li>
                 <li class="relative group">
                     <a href="#" class="text-gray-700 hover:text-green-600">Hotels & Restaurants</a>
-                    <ul class="absolute hidden group-hover:block bg-white shadow-md mt-2 rounded-md">
+                    <ul class="absolute hidden group-hover:block bg-white shadow-md mt-2 rounded-md z-30">
                         <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Food Suggestions</a></li>
                         <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Accommodation</a></li>
                     </ul>
@@ -50,9 +49,9 @@
             </ul>
         </div>
     </nav>
-
+    
     <!-- HS -->
-    <section class="relative bg-cover bg-center h-96" style="background-image: url('img/backgroundHS.webp');">
+    <section class="relative bg-cover bg-center h-96" style="background-image: url('img/backgroundHS.webp'); z-index: 1;">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="container mx-auto h-full flex flex-col justify-center items-center text-center text-white relative z-10">
             <h1 class="text-4xl font-bold">Explore the Beauty of Baguio</h1>
@@ -62,6 +61,7 @@
             </button>
         </div>
     </section>
+    
 
     <!-- CS -->
     <section class="container mx-auto px-4 py-12">
