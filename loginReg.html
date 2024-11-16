@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In/Sign Up  | Peak Baguio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Flowbite -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet">
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('bg.jpg'); font-family: 'Outfit', sans-serif;">
+    <div class="w-full max-w-md bg-white/30 border border-white/20 backdrop-blur-md text-white p-6 rounded-lg">
+        <!-- Sign In Form -->
+        <div id="loginForm" class="block">
+            <h1 class="text-3xl font-bold text-center mb-4">Sign In</h1>
+            <div class="flex justify-center gap-4 mb-6">
+                <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-google-plus'></i></a>
+                <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-facebook'></i></a>
+                <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-github'></i></a>
+                <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-linkedin'></i></a>
+            </div>
+            <p class="text-center mb-4">Or use your email and password</p>
+            <form class="space-y-4">
+                <input type="email" placeholder="Email" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
+                <input type="password" placeholder="Password" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
+                <button type="button" class="w-full p-3 bg-green-600 rounded-full text-white hover:bg-green-700">Sign In</button>
+                <a href="#" class="block text-center mt-2 hover:text-gray-300">Forgot Your Password?</a>
+            </form>
+            <p class="text-center mt-4">Don't have an account? <a href="#" id="showSignup" class="text-green-400 hover:underline">Sign Up</a></p>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signupForm" class="hidden">
+            <h1 class="text-3xl font-bold text-center mb-4">Create An Account</h1>
+            <div class="flex justify-center gap-4 mb-6">
+                <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-google-plus'></i></a>
+                <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-facebook'></i></a>
+                <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-github'></i></a>
+                <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-linkedin'></i></a>
+            </div>
+            <p class="text-center mb-4">Or use your email for registration</p>
+            <form class="space-y-4">
+                <input type="text" placeholder="Name" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
+                <input type="email" placeholder="Email" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
+                <input type="password" placeholder="Password" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
+                <button type="button" class="w-full p-3 bg-green-600 rounded-full text-white hover:bg-green-700">Sign Up</button>
+            </form>
+            <p class="text-center mt-4">Already have an account? <a href="#" id="showLogin" class="text-green-400 hover:underline">Sign In</a></p>
+        </div>
+    </div>
+
+    <!-- JavaScript for toggling forms -->
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const showSignupBtn = document.getElementById('showSignup');
+        const showLoginBtn = document.getElementById('showLogin');
+
+        showSignupBtn.addEventListener('click', () => {
+            loginForm.classList.add('hidden');
+            signupForm.classList.remove('hidden');
+        });
+
+        showLoginBtn.addEventListener('click', () => {
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>
