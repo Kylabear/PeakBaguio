@@ -33,7 +33,7 @@
             <p class="text-center mt-4">Don't have an account? <a href="#" id="showSignup" class="text-red-600 hover:underline">Sign Up</a></p>
         </div>
 
-        <!-- Sign Up Form -->
+   
         <div id="signupForm" class="hidden">
             <h1 class="text-3xl font-bold text-center mb-4">Create An Account</h1>
             <div class="flex justify-center gap-4 mb-6">
@@ -59,7 +59,7 @@
         const showSignupBtn = document.getElementById('showSignup');
         const showLoginBtn = document.getElementById('showLogin');
 
-        // Toggle forms
+
         showSignupBtn.addEventListener('click', () => {
             loginForm.classList.add('hidden');
             signupForm.classList.remove('hidden');
@@ -70,7 +70,6 @@
             signupForm.classList.add('hidden');
         });
 
-        // Form validation functions
         function validateSignIn() {
             const email = document.getElementById('signInEmail').value;
             const password = document.getElementById('signInPassword').value;
