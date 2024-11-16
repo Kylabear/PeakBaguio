@@ -4,25 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In/Sign Up  | Peak Baguio</title>
-
-    <!-- Tailwind CSS -->
+    <title>Sign In/Sign Up | Peak Baguio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Flowbite -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet">
-
-    <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
-<body class="min-h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('bg.jpg'); font-family: 'Outfit', sans-serif;">
-    <div class="w-full max-w-md bg-white/30 border border-white/20 backdrop-blur-md text-white p-6 rounded-lg">
-        <!-- Sign In Form -->
+<body class="min-h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('img/regsi.jpg'); font-family: 'Outfit', sans-serif;">
+    <div class="w-full max-w-md bg-white/30 border border-black/20 backdrop-blur-sm text-black p-6 rounded-lg">
+
         <div id="loginForm" class="block">
             <h1 class="text-3xl font-bold text-center mb-4">Sign In</h1>
             <div class="flex justify-center gap-4 mb-6">
@@ -36,9 +28,9 @@
                 <input type="email" placeholder="Email" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
                 <input type="password" placeholder="Password" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
                 <button type="button" class="w-full p-3 bg-green-600 rounded-full text-white hover:bg-green-700">Sign In</button>
-                <a href="#" class="block text-center mt-2 hover:text-gray-300">Forgot Your Password?</a>
+                <a href="#" class="block text-center mt-2 hover:text-blue-600">Forgot Your Password?</a>
             </form>
-            <p class="text-center mt-4">Don't have an account? <a href="#" id="showSignup" class="text-green-400 hover:underline">Sign Up</a></p>
+            <p class="text-center mt-4">Don't have an account? <a href="#" id="showSignup" class="text-red-600 hover:underline">Sign Up</a></p>
         </div>
 
         <!-- Sign Up Form -->
@@ -54,20 +46,20 @@
             <form class="space-y-4">
                 <input type="text" placeholder="Name" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
                 <input type="email" placeholder="Email" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
-                <input type="password" placeholder="Password" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
+                <input type="password" placeholder="Password" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-black">
                 <button type="button" class="w-full p-3 bg-green-600 rounded-full text-white hover:bg-green-700">Sign Up</button>
             </form>
-            <p class="text-center mt-4">Already have an account? <a href="#" id="showLogin" class="text-green-400 hover:underline">Sign In</a></p>
+            <p class="text-center mt-4">Already have an account? <a href="#" id="showLogin" class="text-blue-600 hover:underline">Sign In</a></p>
         </div>
     </div>
 
-    <!-- JavaScript for toggling forms -->
     <script>
         const loginForm = document.getElementById('loginForm');
         const signupForm = document.getElementById('signupForm');
         const showSignupBtn = document.getElementById('showSignup');
         const showLoginBtn = document.getElementById('showLogin');
 
+        // Toggle forms
         showSignupBtn.addEventListener('click', () => {
             loginForm.classList.add('hidden');
             signupForm.classList.remove('hidden');
@@ -77,6 +69,51 @@
             loginForm.classList.remove('hidden');
             signupForm.classList.add('hidden');
         });
+
+        // Form validation functions
+        function validateSignIn() {
+            const email = document.getElementById('signInEmail').value;
+            const password = document.getElementById('signInPassword').value;
+
+            if (!email || !password) {
+                alert('All fields are required.');
+                return;
+            }
+            if (!email.includes('@')) {
+                alert('Please enter a valid email address. Example: user@example.com');
+                return;
+            }
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                return;
+            }
+            alert('Sign In successful!');
+        }
+
+        function validateSignUp() {
+            const name = document.getElementById('signUpName').value;
+            const email = document.getElementById('signUpEmail').value;
+            const password = document.getElementById('signUpPassword').value;
+
+            if (!name || !email || !password) {
+                alert('All fields are required.');
+                return;
+            }
+            if (!email.includes('@')) {
+                alert('Please enter a valid email address. Example: user@example.com');
+                return;
+            }
+            if (!isStrongPassword(password)) {
+                alert('Password must be at least 8 characters, include a mix of uppercase, lowercase, numbers, and special characters.');
+                return;
+            }
+            alert('Sign Up successful!');
+        }
+
+        function isStrongPassword(password) {
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            return regex.test(password);
+        }
     </script>
 </body>
 
