@@ -4,102 +4,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Popular Spots in Baguio City</title>
+    <title>Baguio City Parks</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places"></script>
 </head>
 
 <body class="bg-gray-100 font-sans">
-    
     <header class="bg-green-600 text-white py-4">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-3xl font-bold">Explore the Best of Baguio City</h1>
-            <p class="text-lg mt-1">Discover top-rated tourist spots with all the information you need!</p>
+            <h1 class="text-3xl font-bold">Baguio City Parks</h1>
+            <p class="text-lg mt-1">Explore the Best Parks of Baguio</p>
         </div>
     </header>
 
-    
     <section class="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        <div class="bg-white rounded-lg shadow-lg p-6">
-            <img src="img/burnham_park.jpg" alt="Burnham Park" class="rounded-lg mb-4 w-full">
-            <h2 class="text-xl font-bold text-gray-800">Burnham Park</h2>
+        <div class="bg-white rounded-lg shadow-lg p-6 group">
+            <img src="https://via.placeholder.com/600x400" alt="Burnham Park" class="rounded-lg mb-4 w-full group-hover:scale-105 transition-transform">
+            <h2 class="text-xl font-bold text-gray-800 hover:text-green-600 cursor-pointer" data-modal-toggle="burnhamModal">Burnham Park</h2>
             <p class="text-gray-600">A haven for relaxation and fun activities in the heart of Baguio City.</p>
-
-            
-            <div class="flex items-center mt-2">
-                <span class="text-yellow-400">
-                    <i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star-half'></i><i class='bx bx-star'></i>
-                </span>
-                <span class="ml-2 text-gray-600">(4.5 based on user reviews)</span>
-            </div>
-
-           
-            <div class="mt-4">
-                <h3 class="text-lg font-bold text-gray-800">Do's</h3>
-                <ul class="list-disc list-inside text-gray-600">
-                    <li>Respect the park's cleanliness.</li>
-                    <li>Follow park regulations.</li>
-                    <li>Enjoy paddle boating and biking.</li>
-                </ul>
-
-                <h3 class="text-lg font-bold text-gray-800 mt-2">Don'ts</h3>
-                <ul class="list-disc list-inside text-gray-600">
-                    <li>No littering or vandalism.</li>
-                    <li>Avoid feeding animals.</li>
-                </ul>
-            </div>
-
-            
-            <div class="mt-4">
-                <h3 class="text-lg font-bold text-gray-800">Parking Availability</h3>
-                <p class="text-gray-600">Available parking spaces near Burnham Park Plaza.</p>
-            </div>
-
-            
-            <div class="mt-4">
-                <h3 class="text-lg font-bold text-gray-800">Recommended Transportation</h3>
-                <p class="text-gray-600">Best explored on foot or by bike. Jeepney terminals are nearby for public transport.</p>
-            </div>
-
-            
-            <div class="mt-4">
-                <h3 class="text-lg font-bold text-gray-800">Accessibility</h3>
-                <p class="text-gray-600">Wheelchair-friendly ramps and pathways are available throughout the park.</p>
-            </div>
-
-            
-            <div class="mt-4">
-                <h3 class="text-lg font-bold text-gray-800">Emergency Contacts</h3>
-                <p class="text-gray-600">
-                    PNP: <a href="tel:+639123456789" class="text-blue-600 hover:underline">+63 912 345 6789</a><br>
-                    Medical Assistance: <a href="tel:+639876543210" class="text-blue-600 hover:underline">+63 987 654 3210</a>
-                </p>
-            </div>
-
-            <!-- Map -->
-            <div class="mt-4">
-                <h3 class="text-lg font-bold text-gray-800">Location</h3>
-                <div class="aspect-w-16 aspect-h-9">
-                    <iframe class="rounded-lg border border-gray-300" 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3836.197762457432!2d120.5918422153336!3d16.40899478865212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391a1e81aabb21b%3A0x4e6a26f4a3c75db5!2sBurnham%20Park!5e0!3m2!1sen!2sph!4v1696392366247!5m2!1sen!2sph" 
-                        allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div id="burnhamModal" tabindex="-1" class="hidden fixed inset-0 z-50 bg-gray-900 bg-opacity-75 flex justify-center items-center">
+            <div class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto p-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-gray-800">Burnham Park</h2>
+                    <button class="text-gray-600 hover:text-gray-800" data-modal-hide="burnhamModal">
+                        <i class='bx bx-x text-2xl'></i>
+                    </button>
                 </div>
-                <p class="text-gray-600 mt-2">Jeepney Terminal: Located at Harisson Road near Burnham Park.</p>
+                <div class="mt-4">
+                    <img src="https://via.placeholder.com/800x400" alt="Burnham Park" class="rounded-lg w-full mb-4">
+                    <p class="text-gray-600 mb-4">
+                        <strong>History:</strong> Established in 1925 by American architect Daniel Burnham, this park is one of the oldest and most iconic recreational spaces in Baguio City. Known for its scenic beauty, Burnham Park offers paddle boating, biking, and flower gardens that attract thousands of visitors each year.
+                    </p>
+                    <video controls class="rounded-lg w-full mb-4">
+                        <source src="videos/burnham_park.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="mt-4">
+                    <h3 class="text-lg font-bold text-gray-800">Accessibility</h3>
+                    <p class="text-gray-600">Wheelchair accessible pathways, nearby public restrooms, and convenient transportation hubs make Burnham Park accessible to everyone.</p>
+
+                    <h3 class="text-lg font-bold text-gray-800 mt-4">Emergency Contacts</h3>
+                    <p class="text-gray-600">
+                        PNP Burnham Station: <a href="tel:+639123456789" class="text-blue-600 hover:underline">+63 912 345 6789</a><br>
+                        Medical Assistance: <a href="tel:+639876543210" class="text-blue-600 hover:underline">+63 987 654 3210</a>
+                    </p>
+
+                    <h3 class="text-lg font-bold text-gray-800 mt-4">Interactive Map</h3>
+                    <div id="burnhamMap" class="w-full h-96 rounded-lg mb-4"></div>
+
+                    <h3 class="text-lg font-bold text-gray-800">User Ratings</h3>
+                    <p class="text-gray-600">Average Rating: <span id="averageRating">4.5</span> ⭐</p>
+                    <div class="mt-2">
+                        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Rate This Spot</button>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="bg-white rounded-lg shadow-lg p-6 group">
+            <img src="https://via.placeholder.com/600x400" alt="Mines View Park" class="rounded-lg mb-4 w-full group-hover:scale-105 transition-transform">
+            <h2 class="text-xl font-bold text-gray-800 hover:text-green-600 cursor-pointer" data-modal-toggle="minesViewModal">Mines View Park</h2>
+            <p class="text-gray-600">A breathtaking panoramic view of the mining town of Itogon.</p>
+        </div>
+        <div id="minesViewModal" tabindex="-1" class="hidden fixed inset-0 z-50 bg-gray-900 bg-opacity-75 flex justify-center items-center">
+            <div class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto p-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-gray-800">Mines View Park</h2>
+                    <button class="text-gray-600 hover:text-gray-800" data-modal-hide="minesViewModal">
+                        <i class='bx bx-x text-2xl'></i>
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <img src="https://via.placeholder.com/800x400" alt="Mines View Park" class="rounded-lg w-full mb-4">
+                    <p class="text-gray-600 mb-4">
+                        <strong>History:</strong> Mines View Park was established to offer a stunning view of the old mining town of Itogon. It became a popular tourist destination for those wanting to experience the beauty of Baguio’s mountains and learn about the area’s mining history.
+                    </p>
+                    <video controls class="rounded-lg w-full mb-4">
+                        <source src="videos/mines_view.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="mt-4">
+                    <h3 class="text-lg font-bold text-gray-800">Accessibility</h3>
+                    <p class="text-gray-600">Mines View Park is easily accessible by private vehicles or jeepneys from the city center. Wheelchair accessible pathways are available for visitors with disabilities.</p>
 
-        <!-- Additional cards can go here -->
+                    <h3 class="text-lg font-bold text-gray-800 mt-4">Emergency Contacts</h3>
+                    <p class="text-gray-600">
+                        PNP Mines View Station: <a href="tel:+639123456789" class="text-blue-600 hover:underline">+63 912 345 6789</a><br>
+                        Medical Assistance: <a href="tel:+639876543210" class="text-blue-600 hover:underline">+63 987 654 3210</a>
+                    </p>
+
+                    <h3 class="text-lg font-bold text-gray-800 mt-4">Interactive Map</h3>
+                    <div id="minesViewMap" class="w-full h-96 rounded-lg mb-4"></div>
+
+                    <h3 class="text-lg font-bold text-gray-800">User Ratings</h3>
+                    <p class="text-gray-600">Average Rating: <span id="averageRating">4.7</span> ⭐</p>
+                    <div class="mt-2">
+                        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Rate This Spot</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    
-    <footer class="bg-gray-800 text-white py-4 mt-8">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2024 Baguio City Tourism. All Rights Reserved.</p>
-        </div>
+    <footer class="bg-green-600 text-white py-4 text-center">
+        <p>&copy; 2024 Baguio City Parks</p>
     </footer>
+
+    <script>
+        function initMap() {
+            var burnhamPark = { lat: 16.402, lng: 120.591 };
+            var minesViewPark = { lat: 16.392, lng: 120.596 };
+            
+            var burnhamMap = new google.maps.Map(document.getElementById("burnhamMap"), {
+                center: burnhamPark,
+                zoom: 15
+            });
+            new google.maps.Marker({
+                position: burnhamPark,
+                map: burnhamMap,
+                title: "Burnham Park"
+            });
+
+            var minesViewMap = new google.maps.Map(document.getElementById("minesViewMap"), {
+                center: minesViewPark,
+                zoom: 15
+            });
+            new google.maps.Marker({
+                position: minesViewPark,
+                map: minesViewMap,
+                title: "Mines View Park"
+            });
+        }
+    </script>
 </body>
 
 </html>
