@@ -339,42 +339,46 @@
             </div>
             
             <script>
-            document.getElementById('itinerary-form').addEventListener('submit', async function(event) {
-                event.preventDefault();
-            
-                const budget = document.getElementById('budget').value;
-                const duration = document.getElementById('duration').value;
-                const interests = Array.from(document.getElementById('interests').selectedOptions).map(option => option.value);
-            
-                const response = await fetch('http://localhost:3000/generate-itinerary', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        budget,
-                        duration,
-                        interests
-                    })
+                document.getElementById('itinerary-form').addEventListener('submit', async function(event) {
+                    event.preventDefault();
+                    const budget = document.getElementById('budget').value;
+                    const duration = document.getElementById('duration').value;
+                    const interests = Array.from(document.getElementById('interests').selectedOptions).map(option => option.value);
+    
+                    // Send form data to the backend
+                    const response = await fetch('http://localhost:5000/generate-itinerary', {  // Ensure the URL matches our backend
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            budget,
+                            duration,
+                            interests
+                        })
+                    });
+    
+                    const data = await response.json();
+                    if (data.itinerary) {
+                        document.getElementById('itinerary-result').classList.remove('hidden');
+                        document.getElementById('result-message').innerText = 'Here is your itinerary:';
+                        
+                        const itineraryList = document.getElementById('itinerary-list');
+                        itineraryList.innerHTML = '';  
+                        
+                        data.itinerary.forEach(item => {
+                            const li = document.createElement('li');
+                            li.innerText = item;
+                            itineraryList.appendChild(li);
+                        });
+                    } else {
+                        alert('Error generating itinerary!');
+                    }
                 });
-            
-                const data = await response.json();
-            
-                document.getElementById('itinerary-result').classList.remove('hidden');
-                document.getElementById('result-message').innerText = data.message;
-                
-                const itineraryList = document.getElementById('itinerary-list');
-                itineraryList.innerHTML = '';
-                data.itinerary.forEach(item => {
-                    const li = document.createElement('li');
-                    li.innerText = item;
-                    itineraryList.appendChild(li);
-                });
-            });
             </script>
-            
         </div>
     </section>
+    
 
     <!-- Highlights -->
     <section class="container mx-auto px-4 py-12">
