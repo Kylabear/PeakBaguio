@@ -7,10 +7,19 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors());
+require('dotenv').config();
 
 const configuration = new Configuration({
-  apiKey: 'our api key',
-});
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+
+const corsOptions = {
+  origin: '*', 
+  methods: 'GET, POST',
+};
+
+app.use(cors(corsOptions));
+
 const openai = new OpenAIApi(configuration);
 app.post('/generate-itinerary', async (req, res) => {
   try {

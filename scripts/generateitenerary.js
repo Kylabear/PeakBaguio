@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const budget = document.getElementById('budget').value;
         const duration = document.getElementById('duration').value;
         const interests = Array.from(document.getElementById('interests').selectedOptions).map(option => option.value);
-
+        console.log({ budget, duration, interests });
+        
         try {
             const response = await fetch('http://localhost:5000/generate-itinerary', {
                 method: 'POST',

@@ -357,6 +357,15 @@
                             interests
                         })
                     });
+                    const itineraryItems = data.itinerary.split('\n');
+                    itineraryItems.forEach(item => {
+                        if (item.trim()) {
+                            const listItem = document.createElement('li');
+                            listItem.innerText = item.trim();
+                            itineraryList.appendChild(listItem);
+                        }
+                    });
+
     
                     const data = await response.json();
                     if (data.itinerary) {
