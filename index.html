@@ -55,7 +55,7 @@
     </nav>
     
     <!-- HS -->
-    <section class="relative bg-cover bg-center h-96" style="background-image: url('img/backgroundHS.webp'); z-index: 1;">
+    <section class="relative bg-cover bg-center h-96" style="background-image: url('img/backgroundHS.png'); z-index: 1;">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="container mx-auto h-full flex flex-col justify-center items-center text-center text-white relative z-10">
             <h1 class="text-4xl font-bold">Explore the Beauty of Baguio</h1>
@@ -341,12 +341,12 @@
             <script>
                 document.getElementById('itinerary-form').addEventListener('submit', async function(event) {
                     event.preventDefault();
+                    
                     const budget = document.getElementById('budget').value;
                     const duration = document.getElementById('duration').value;
                     const interests = Array.from(document.getElementById('interests').selectedOptions).map(option => option.value);
-    
-                    // Send form data to the backend
-                    const response = await fetch('http://localhost:5000/generate-itinerary', {  // Ensure the URL matches our backend
+                    
+                    const response = await fetch('http://localhost:5000/generateitinerary', { 
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -357,17 +357,9 @@
                             interests
                         })
                     });
-                    const itineraryItems = data.itinerary.split('\n');
-                    itineraryItems.forEach(item => {
-                        if (item.trim()) {
-                            const listItem = document.createElement('li');
-                            listItem.innerText = item.trim();
-                            itineraryList.appendChild(listItem);
-                        }
-                    });
-
-    
+                
                     const data = await response.json();
+                    
                     if (data.itinerary) {
                         document.getElementById('itinerary-result').classList.remove('hidden');
                         document.getElementById('result-message').innerText = 'Here is your itinerary:';
@@ -375,6 +367,7 @@
                         const itineraryList = document.getElementById('itinerary-list');
                         itineraryList.innerHTML = '';  
                         
+                    
                         data.itinerary.forEach(item => {
                             const li = document.createElement('li');
                             li.innerText = item;
@@ -384,10 +377,8 @@
                         alert('Error generating itinerary!');
                     }
                 });
-            </script>
-        </div>
-    </section>
-    <script src="js/generateitinerary.js"></script>
+            </script>            
+    <script src="./scripts/generateitenerary.js"></script>
     
 
     <!-- Highlights -->

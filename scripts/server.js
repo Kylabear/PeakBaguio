@@ -1,9 +1,18 @@
 const express = require('express');
 const cors = require('cors');
 const { Configuration, OpenAIApi } = require('openai');
-
+const bodyParser = require('body-parser');
+const authRoutes = require('./scripts/authentication.js');
 const app = express();
 const port = process.env.PORT || 5000;
+const PORT = 3000;
+
+app.use(bodyParser.json());
+app.use('/authentication.js', authRoutes);
+
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
 
 app.use(express.json());
 app.use(cors());
@@ -21,7 +30,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 const openai = new OpenAIApi(configuration);
-app.post('/generate-itinerary', async (req, res) => {
+app.post('/generateitinerary.js', async (req, res) => {
   try {
     const { budget, duration, interests } = req.body;
     const prompt = `Generate an itinerary for a ${budget} traveler for a ${duration}. Interests: ${interests.join(', ')}.`;
