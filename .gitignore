@@ -69,3 +69,4 @@ config.js
 # dataconnect generated files
 .dataconnect
 
+firebase-service-account.json
