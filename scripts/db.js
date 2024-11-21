@@ -1,11 +1,13 @@
-const mariadb = require('mariadb');
+module.exports = pool;
 
-const pool = mariadb.createPool({
+const mysql = require('mysql2');
+
+const pool = mysql.createPool({
     host: 'localhost',
-    user: 'Mariadb', 
-    password: 'mypasswordkylacode12A.',
-    database: 'itinerary_db',
-    connectionLimit: 5
+    user: 'root', 
+    password: 'yourpassword',
+    database: 'peak_baguio'
 });
 
 module.exports = pool;
+
