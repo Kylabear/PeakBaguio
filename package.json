@@ -18,7 +18,10 @@
     "firebase": "^11.0.2",
     "firebase-admin": "^13.0.1",
     "mariadb": "^3.4.0",
-    "openai": "^4.72.0"
+    "openai": "^4.72.0",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.5"
   },
   "devDependencies": {
     "eslint": "^9.15.0",
