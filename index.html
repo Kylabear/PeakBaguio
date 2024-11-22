@@ -29,8 +29,8 @@
     <nav class="bg-white shadow-md relative z-20">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-0">
-                <img src="img/logoPB.png" alt="Logo" id="logo" class="h-12 inline-block" onError="this.src='path_to_default_image.png';">
-                <a href="#" class="text-4xl font-bold text-green-600 ml-0">Peak Baguio</a>
+                <img src="img/logoPB.png" alt="Logo" id="logo" class="h-12 ml-0" onError="this.src='path_to_default_image.png';">
+                <a href="#" class="text-4xl font-bold text-green-600 mr-0">Peak Baguio</a>
             </div>
             <ul class="flex space-x-6">
                 <li class="relative group">
@@ -41,7 +41,6 @@
                         <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Shopping</a></li>
                     </ul>
                 </li>
-                <li><a href="#create-itinerary" class="text-gray-700 hover:text-green-600">Create Itinerary</a></li>
                 <li><a href="Navigations/popularspots.html" class="text-gray-700 hover:text-green-600">Popular Spots</a></li>
                 <li class="relative group">
                     <a href="#" class="text-gray-700 hover:text-green-600">Hotels & Restaurants</a>
@@ -51,7 +50,7 @@
                     </ul>
                 </li>
                 <li><a href="#" class="text-gray-700 hover:text-green-600">Plan Your Trip</a></li>
-                <li><a href="loginReg.html" class="text-gray-700 hover:text-green-600 text-md">Login</a></li>  
+                <li><a href="loginReg.html" class="text-gray-700 hover:text-green-600 text-xl">Login</a></li>  
             </ul>
         </div>
     </nav>
@@ -62,9 +61,11 @@
         <div class="container mx-auto h-full flex flex-col justify-center items-center text-center text-white relative z-10">
             <h1 class="text-4xl font-bold">Explore the Beauty of Baguio</h1>
             <p class="mt-2 text-lg">Discover iconic tourist spots and create your Personalized Itinerary.</p>
-            <button class="mt-4 px-6 py-3 bg-green-600 hover:bg-green-700 rounded-full text-lg font-semibold transition duration-300 transform hover:scale-105">
-                Create Your Personalized Itinerary
-            </button>                        
+            <a href="#create-itinerary">
+                <button class="mt-4 px-6 py-3 bg-green-600 hover:bg-green-700 rounded-full text-lg font-semibold transition duration-300 transform hover:scale-105">
+                    Create Your Personalized Itinerary
+                </button>
+            </a>                        
         </div>
     </section>
 

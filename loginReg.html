@@ -24,12 +24,12 @@
                 <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-linkedin'></i></a>
             </div>
             <p class="text-center mb-4">Or use your email and password</p>
-            <form class="space-y-4">
-                <input type="email" placeholder="Email" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
-                <input type="password" placeholder="Password" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
-                <button type="button" class="w-full p-3 bg-green-600 rounded-full text-white hover:bg-green-700">Sign In</button>
+            <form class="space-y-4" id="loginForm" onsubmit="return validateSignIn(event)">
+                <input id="signInEmail" type="email" placeholder="Email" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white" required>
+                <input id="signInPassword" type="password" placeholder="Password" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white" required>
+                <button type="submit" class="w-full p-3 bg-green-600 rounded-full text-white hover:bg-green-700">Sign In</button>
                 <a href="#" class="block text-center mt-2 hover:text-blue-600">Forgot Your Password?</a>
-            </form>
+            </form>            
             <p class="text-center mt-4">Don't have an account? <a href="#" id="showSignup" class="text-red-600 hover:underline">Sign Up</a></p>
         </div>
 
@@ -70,7 +70,8 @@
             signupForm.classList.add('hidden');
         });
 
-        function validateSignIn() {
+        function validateSignIn(event) {
+            event.preventDefault();
             const email = document.getElementById('signInEmail').value;
             const password = document.getElementById('signInPassword').value;
 
@@ -89,7 +90,8 @@
             alert('Sign In successful!');
         }
 
-        function validateSignUp() {
+        function validateSignUp(event) {
+            event.preventDefault();
             const name = document.getElementById('signUpName').value;
             const email = document.getElementById('signUpEmail').value;
             const password = document.getElementById('signUpPassword').value;
