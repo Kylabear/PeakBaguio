@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log({ budget, duration, interests });
         
         try {
-            const response = await fetch('http://localhost:5000/generateitinerary.js', {
+            const response = await fetch('http://localhost:3000/generateitinerary.js', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
