@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peak Baguio - Plan Your Trip</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+  <header class="bg-green-500 text-white py-4 text-center">
+    <h1 class="text-3xl font-bold">Peak Baguio</h1>
+    <p class="text-lg">Plan your eco-friendly trip to Baguio!</p>
+  </header>
+
+  <section class="flex flex-wrap justify-center gap-4 p-4">
+    <img src="nature.jpg" alt="Nature Walks in Baguio" class="w-full md:w-1/3 rounded-lg shadow-lg">
+    <img src="food.jpg" alt="Local Food in Baguio" class="w-full md:w-1/3 rounded-lg shadow-lg">
+    <img src="img/tain.png" alt="Cultural Experiences in Baguio"
+      class="w-full md:w-1/3 rounded-lg shadow-lg">
+  </section>
+
+  <div class="max-w-3xl mx-auto bg-white p-6 mt-6 rounded-lg shadow-lg">
+    <h2 class="text-2xl font-semibold text-center text-green-500 mb-4">Plan Your Trip</h2>
+    <form id="tripForm" class="space-y-4">
+      <div>
+        <label for="startDate" class="block text-sm font-medium text-gray-700">Travel Start Date:</label>
+        <input type="date" id="startDate" class="w-full mt-1 p-2 border rounded-md focus:ring-green-500 focus:border-green-500"
+          required>
+      </div>
+
+      <div>
+        <label for="endDate" class="block text-sm font-medium text-gray-700">Travel End Date:</label>
+        <input type="date" id="endDate" class="w-full mt-1 p-2 border rounded-md focus:ring-green-500 focus:border-green-500"
+          required>
+      </div>
+
+      <div>
+        <label for="groupSize" class="block text-sm font-medium text-gray-700">Group Size:</label>
+        <input type="number" id="groupSize" min="1" max="50" placeholder="Enter number of people"
+          class="w-full mt-1 p-2 border rounded-md focus:ring-green-500 focus:border-green-500" required>
+      </div>
+
+      <div>
+        <label for="activities" class="block text-sm font-medium text-gray-700">Preferred Activities:</label>
+        <select id="activities" multiple
+          class="w-full mt-1 p-2 border rounded-md focus:ring-green-500 focus:border-green-500">
+          <option value="nature">Nature Walks</option>
+          <option value="food">Local Food Tour</option>
+          <option value="culture">Cultural Experiences</option>
+          <option value="adventure">Adventure Sports</option>
+          <option value="relaxation">Relaxation & Wellness</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="transportation" class="block font-medium">Preferred Transportation:</label>
+        <select id="transportation" class="w-full border rounded-md px-3 py-2">
+          <option value="car">Private Car</option>
+          <option value="bus">E-Jeep</option>
+          <option value="train">Jeepney</option>
+          <option value="bike">Bike</option>
+          <option value="walk">Walking</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="comments" class="block text-sm font-medium text-gray-700">Additional Comments:</label>
+        <textarea id="comments" rows="4" placeholder="Tell us about your preferences"
+          class="w-full mt-1 p-2 border rounded-md focus:ring-green-500 focus:border-green-500"></textarea>
+      </div>
+
+      <button type="button" onclick="generatePlan()"
+        class="w-full bg-green-500 text-white font-medium py-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+        Plan My Trip
+      </button>
+    </form>
+
+    <div id="output" class="bg-green-50 mt-6 p-4 border-l-4 border-green-500 rounded-md" style="display: none;"></div>
+  </div>
+
+  <script>
+    function generatePlan() {
+      const startDate = document.getElementById('startDate').value;
+      const endDate = document.getElementById('endDate').value;
+      const groupSize = document.getElementById('groupSize').value;
+      const activities = Array.from(document.getElementById('activities').selectedOptions).map(option => option.text);
+      const comments = document.getElementById('comments').value;
+
+      if (!startDate || !endDate || !groupSize || activities.length === 0) {
+        alert('Please fill out all required fields!');
+        return;
+      }
+
+      const output = `
+        <h3 class="text-xl font-bold text-green-500">Your Peak Baguio Trip Plan:</h3>
+        <p><strong>Travel Dates:</strong> ${startDate} to ${endDate}</p>
+        <p><strong>Group Size:</strong> ${groupSize} people</p>
+        <p><strong>Activities:</strong> ${activities.join(', ')}</p>
+        ${comments ? `<p><strong>Additional Comments:</strong> ${comments}</p>` : ''}
+        <p>Thank you for planning your eco-friendly trip with Peak Baguio!</p>
+      `;
+
+      const recommendedDuration = activities.length * 2; // lets say Each activity is roughly 2 hours
+
+      const outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = output;
+      outputDiv.classList.remove('hidden');
+    }
+  </script>
+
+</body>
+
+</html>

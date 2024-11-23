@@ -20,96 +20,137 @@
         </div>
     </header>
 
-    <section class="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white rounded-lg shadow-lg p-6 group">
-            <img src="https://via.placeholder.com/600x400" alt="Burnham Park" class="rounded-lg mb-4 w-full group-hover:scale-105 transition-transform">
-            <h2 class="text-xl font-bold text-gray-800 hover:text-green-600 cursor-pointer" data-modal-toggle="burnhamModal">Burnham Park</h2>
-            <p class="text-gray-600">A haven for relaxation and fun activities in the heart of Baguio City.</p>
-        </div>
-        <div id="burnhamModal" tabindex="-1" class="hidden  inset-0 z-50 bg-gray-900 bg-opacity-75 justify-center items-center">
-            <div class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto p-6">
-                <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-bold text-gray-800">Burnham Park</h2>
-                    <button class="text-gray-600 hover:text-gray-800" data-modal-hide="burnhamModal">
-                        <i class='bx bx-x text-2xl'></i>
-                    </button>
-                </div>
-                <div class="mt-4">
-                    <img src="https://via.placeholder.com/800x400" alt="Burnham Park" class="rounded-lg w-full mb-4">
-                    <p class="text-gray-600 mb-4">
-                        <strong>History:</strong> Established in 1925 by American architect Daniel Burnham, this park is one of the oldest and most iconic recreational spaces in Baguio City. Known for its scenic beauty, Burnham Park offers paddle boating, biking, and flower gardens that attract thousands of visitors each year.
-                    </p>
-                    <video controls class="rounded-lg w-full mb-4">
-                        <source src="videos/burnham_park.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="mt-4">
-                    <h3 class="text-lg font-bold text-gray-800">Accessibility</h3>
-                    <p class="text-gray-600">Wheelchair accessible pathways, nearby public restrooms, and convenient transportation hubs make Burnham Park accessible to everyone.</p>
-
-                    <h3 class="text-lg font-bold text-gray-800 mt-4">Emergency Contacts</h3>
-                    <p class="text-gray-600">
-                        PNP Burnham Station: <a href="tel:+639123456789" class="text-blue-600 hover:underline">+63 912 345 6789</a><br>
-                        Medical Assistance: <a href="tel:+639876543210" class="text-blue-600 hover:underline">+63 987 654 3210</a>
-                    </p>
-
-                    <h3 class="text-lg font-bold text-gray-800 mt-4">Interactive Map</h3>
-                    <div id="burnhamMap" class="w-full h-96 rounded-lg mb-4"></div>
-
-                    <h3 class="text-lg font-bold text-gray-800">User Ratings</h3>
-                    <p class="text-gray-600">Average Rating: <span id="averageRating">4.5</span> ⭐</p>
-                    <div class="mt-2">
-                        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Rate This Spot</button>
+    <main class ="container mx-auto px-4 py-8">
+        <section id="nature-parks" class="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Nature & Parks</h2>
+            <div class="bg-white rounded-lg shadow-lg p-6 group">
+                <img src="https://via.placeholder.com/600x400" alt="Burnham Park" class="rounded-lg mb-4 w-full group-hover:scale-105 transition-transform">
+                <h2 class="text-xl font-bold text-gray-800 hover:text-green-600 cursor-pointer" data-modal-toggle="burnhamModal">Burnham Park</h2>
+                <p class="text-gray-600">A haven for relaxation and fun activities in the heart of Baguio City.</p>
+            </div>
+            <div id="burnhamModal" tabindex="-1" class="hidden  inset-0 z-50 bg-gray-900 bg-opacity-75 justify-center items-center">
+                <div class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto p-6">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-2xl font-bold text-gray-800">Burnham Park</h2>
+                        <button class="text-gray-600 hover:text-gray-800" data-modal-hide="burnhamModal">
+                            <i class='bx bx-x text-2xl'></i>
+                        </button>
+                    </div>
+                    <div class="mt-4">
+                        <img src="https://via.placeholder.com/800x400" alt="Burnham Park" class="rounded-lg w-full mb-4">
+                        <p class="text-gray-600 mb-4">
+                            <strong>History:</strong> Established in 1925 by American architect Daniel Burnham, this park is one of the oldest and most iconic recreational spaces in Baguio City. Known for its scenic beauty, Burnham Park offers paddle boating, biking, and flower gardens that attract thousands of visitors each year.
+                        </p>
+                        <video controls class="rounded-lg w-full mb-4">
+                            <source src="videos/burnham_park.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-lg font-bold text-gray-800">Accessibility</h3>
+                        <p class="text-gray-600">Wheelchair accessible pathways, nearby public restrooms, and convenient transportation hubs make Burnham Park accessible to everyone.</p>
+    
+                        <h3 class="text-lg font-bold text-gray-800 mt-4">Emergency Contacts</h3>
+                        <p class="text-gray-600">
+                            PNP Burnham Station: <a href="tel:+639123456789" class="text-blue-600 hover:underline">+63 912 345 6789</a><br>
+                            Medical Assistance: <a href="tel:+639876543210" class="text-blue-600 hover:underline">+63 987 654 3210</a>
+                        </p>
+    
+                        <h3 class="text-lg font-bold text-gray-800 mt-4">Interactive Map</h3>
+                        <div id="burnhamMap" class="w-full h-96 rounded-lg mb-4"></div>
+    
+                        <h3 class="text-lg font-bold text-gray-800">User Ratings</h3>
+                        <p class="text-gray-600">Average Rating: <span id="averageRating">4.5</span> ⭐</p>
+                        <div class="mt-2">
+                            <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Rate This Spot</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="bg-white rounded-lg shadow-lg p-6 group">
-            <img src="https://via.placeholder.com/600x400" alt="Mines View Park" class="rounded-lg mb-4 w-full group-hover:scale-105 transition-transform">
-            <h2 class="text-xl font-bold text-gray-800 hover:text-green-600 cursor-pointer" data-modal-toggle="minesViewModal">Mines View Park</h2>
-            <p class="text-gray-600">A breathtaking panoramic view of the mining town of Itogon.</p>
-        </div>
-        <div id="minesViewModal" tabindex="-1" class="hidden fixed inset-0 z-50 bg-gray-900 bg-opacity-75 justify-center items-center">
-            <div class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto p-6">
-                <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-bold text-gray-800">Mines View Park</h2>
-                    <button class="text-gray-600 hover:text-gray-800" data-modal-hide="minesViewModal">
-                        <i class='bx bx-x text-2xl'></i>
-                    </button>
-                </div>
-                <div class="mt-4">
-                    <img src="https://via.placeholder.com/800x400" alt="Mines View Park" class="rounded-lg w-full mb-4">
-                    <p class="text-gray-600 mb-4">
-                        <strong>History:</strong> Mines View Park was established to offer a stunning view of the old mining town of Itogon. It became a popular tourist destination for those wanting to experience the beauty of Baguio’s mountains and learn about the area’s mining history.
-                    </p>
-                    <video controls class="rounded-lg w-full mb-4">
-                        <source src="videos/mines_view.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="mt-4">
-                    <h3 class="text-lg font-bold text-gray-800">Accessibility</h3>
-                    <p class="text-gray-600">Mines View Park is easily accessible by private vehicles or jeepneys from the city center. Wheelchair accessible pathways are available for visitors with disabilities.</p>
-
-                    <h3 class="text-lg font-bold text-gray-800 mt-4">Emergency Contacts</h3>
-                    <p class="text-gray-600">
-                        PNP Mines View Station: <a href="tel:+639123456789" class="text-blue-600 hover:underline">+63 912 345 6789</a><br>
-                        Medical Assistance: <a href="tel:+639876543210" class="text-blue-600 hover:underline">+63 987 654 3210</a>
-                    </p>
-
-                    <h3 class="text-lg font-bold text-gray-800 mt-4">Interactive Map</h3>
-                    <div id="minesViewMap" class="w-full h-96 rounded-lg mb-4"></div>
-
-                    <h3 class="text-lg font-bold text-gray-800">User Ratings</h3>
-                    <p class="text-gray-600">Average Rating: <span id="averageRating">4.7</span> ⭐</p>
-                    <div class="mt-2">
-                        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Rate This Spot</button>
+            <div class="bg-white rounded-lg shadow-lg p-6 group">
+                <img src="https://via.placeholder.com/600x400" alt="Mines View Park" class="rounded-lg mb-4 w-full group-hover:scale-105 transition-transform">
+                <h2 class="text-xl font-bold text-gray-800 hover:text-green-600 cursor-pointer" data-modal-toggle="minesViewModal">Mines View Park</h2>
+                <p class="text-gray-600">A breathtaking panoramic view of the mining town of Itogon.</p>
+            </div>
+            <div id="minesViewModal" tabindex="-1" class="hidden fixed inset-0 z-50 bg-gray-900 bg-opacity-75 justify-center items-center">
+                <div class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto p-6">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-2xl font-bold text-gray-800">Mines View Park</h2>
+                        <button class="text-gray-600 hover:text-gray-800" data-modal-hide="minesViewModal">
+                            <i class='bx bx-x text-2xl'></i>
+                        </button>
+                    </div>
+                    <div class="mt-4">
+                        <img src="https://via.placeholder.com/800x400" alt="Mines View Park" class="rounded-lg w-full mb-4">
+                        <p class="text-gray-600 mb-4">
+                            <strong>History:</strong> Mines View Park was established to offer a stunning view of the old mining town of Itogon. It became a popular tourist destination for those wanting to experience the beauty of Baguio’s mountains and learn about the area’s mining history.
+                        </p>
+                        <video controls class="rounded-lg w-full mb-4">
+                            <source src="videos/mines_view.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-lg font-bold text-gray-800">Accessibility</h3>
+                        <p class="text-gray-600">Mines View Park is easily accessible by private vehicles or jeepneys from the city center. Wheelchair accessible pathways are available for visitors with disabilities.</p>
+    
+                        <h3 class="text-lg font-bold text-gray-800 mt-4">Emergency Contacts</h3>
+                        <p class="text-gray-600">
+                            PNP Mines View Station: <a href="tel:+639123456789" class="text-blue-600 hover:underline">+63 912 345 6789</a><br>
+                            Medical Assistance: <a href="tel:+639876543210" class="text-blue-600 hover:underline">+63 987 654 3210</a>
+                        </p>
+    
+                        <h3 class="text-lg font-bold text-gray-800 mt-4">Interactive Map</h3>
+                        <div id="minesViewMap" class="w-full h-96 rounded-lg mb-4"></div>
+    
+                        <h3 class="text-lg font-bold text-gray-800">User Ratings</h3>
+                        <p class="text-gray-600">Average Rating: <span id="averageRating">4.7</span> ⭐</p>
+                        <div class="mt-2">
+                            <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Rate This Spot</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        
+        <section id="cultural-sites" class="mb-8">
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Cultural Sites</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <p class="text-gray-600">Content for Cultural Sites goes here.</p>
+            </div>
+        </section>
+
+        <section id="shopping" class="mb-8">
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Shopping</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <p class="text-gray-600">Content for Shopping goes here.</p>
+            </div>
+        </section>
+
+        <section id="cafes" class="mb-8">
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Cafes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <p class="text-gray-600">Content for Cafes goes here.</p>
+            </div>
+        </section>
+
+        <section id="food-trip" class="mb-8">
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Food Trip</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <p class="text-gray-600">Content for Food Trip goes here.</p>
+            </div>
+        </section>
+
+        <section id="activities" class="mb-8">
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Activities</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <p class="text-gray-600">Content for Activities goes here.</p>
+            </div>
+        </section>
+
+    </main>
+
+    
 
     <footer class="bg-green-600 text-white py-4 text-center">
         <p>&copy; 2024 Baguio City Parks</p>
