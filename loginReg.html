@@ -48,78 +48,79 @@
                 <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-linkedin'></i></a>
             </div>
             <p class="text-center mb-4">Or use your email for registration</p>
-            <form id="signupForm" class="space-y-4">
-                <input id="signUpName" type="text" placeholder="Name" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
-                <input id="signUpEmail" type="email" placeholder="Email" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
-                <input id="signUpPassword" type="password" placeholder="Password" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
-                <button type="submit" class="w-full p-3 bg-green-600 rounded-full text-white hover:bg-green-700">Sign Up</button>
+            <form class="space-y-4">
+                <input type="text" placeholder="Name" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
+                <input type="email" placeholder="Email" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-white">
+                <input type="password" placeholder="Password" class="w-full p-3 bg-transparent border border-white/20 rounded-full placeholder-black">
+                <button type="button" class="w-full p-3 bg-green-600 rounded-full text-white hover:bg-green-700">Sign Up</button>
             </form>
             <p class="text-center mt-4">Already have an account? <a href="#" id="showLogin" class="text-blue-600 hover:underline">Sign In</a></p>
         </div>
     </div>
 
     <script>
-    
-        const firebaseConfig = {
-            apiKey: "AIzaSyAJ564oay2U0WPQ8V2p0hGEzY848JlnI9c",
-            authDomain: "peakbaguio-3173a.firebaseapp.com",
-            databaseURL: "https://peakbaguio-3173a-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "peakbaguio-3173a",
-            storageBucket: "peakbaguio-3173a.firebasestorage.app",
-            messagingSenderId: "777024042992",
-            appId: "1:777024042992:web:86b0b9ef0e7e9e102a0f35",
-            measurementId: "G-HWM2K6HG9L"
-        };
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const showSignupBtn = document.getElementById('showSignup');
+        const showLoginBtn = document.getElementById('showLogin');
 
-        const app = firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const database = firebase.database();
-
-        const loginForm = document.querySelector('#loginForm form');
-        const signupForm = document.querySelector('#signupForm form');
-        const showSignupBtn = document.querySelector('#showSignup');
-        const showLoginBtn = document.querySelector('#showLogin');
 
         showSignupBtn.addEventListener('click', () => {
-            document.getElementById('loginForm').classList.add('hidden');
-            document.getElementById('signupForm').classList.remove('hidden');
+            loginForm.classList.add('hidden');
+            signupForm.classList.remove('hidden');
         });
 
         showLoginBtn.addEventListener('click', () => {
-            document.getElementById('loginForm').classList.remove('hidden');
-            document.getElementById('signupForm').classList.add('hidden');
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
         });
 
-        signupForm.addEventListener("submit", async (event) => {
+        function validateSignIn(event) {
             event.preventDefault();
+            const email = document.getElementById('signInEmail').value;
+            const password = document.getElementById('signInPassword').value;
 
+            if (!email || !password) {
+                alert('All fields are required.');
+                return;
+            }
+            if (!email.includes('@')) {
+                alert('Please enter a valid email address. Example: user@example.com');
+                return;
+            }
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                return;
+            }
+            alert('Sign In successful!');
+        }
+
+        function validateSignUp(event) {
+            event.preventDefault();
             const name = document.getElementById('signUpName').value;
             const email = document.getElementById('signUpEmail').value;
             const password = document.getElementById('signUpPassword').value;
 
-            try {
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-                await database.ref("users/" + user.uid).set({ username: name, email: email });
-                alert("Sign Up successful!");
-            } catch (error) {
-                alert(error.message);
+            if (!name || !email || !password) {
+                alert('All fields are required.');
+                return;
             }
-        });
-
-        loginForm.addEventListener("submit", async (event) => {
-            event.preventDefault();
-
-            const email = document.getElementById('signInEmail').value;
-            const password = document.getElementById('signInPassword').value;
-
-            try {
-                const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                alert("Login successful!");
-            } catch (error) {
-                alert(error.message);
+            if (!email.includes('@')) {
+                alert('Please enter a valid email address. Example: user@example.com');
+                return;
             }
-        });
+            if (!isStrongPassword(password)) {
+                alert('Password must be at least 8 characters, include a mix of uppercase, lowercase, numbers, and special characters.');
+                return;
+            }
+            alert('Sign Up successful!');
+        }
+
+        function isStrongPassword(password) {
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            return regex.test(password);
+        }
     </script>
 </body>
+
 </html>
