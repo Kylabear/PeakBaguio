@@ -10,6 +10,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Firebase JS SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
 </head>
 
 <body class="min-h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('img/regsi.jpg'); font-family: 'Outfit', sans-serif;">
@@ -54,68 +59,67 @@
     </div>
 
     <script>
-        const loginForm = document.getElementById('loginForm');
-        const signupForm = document.getElementById('signupForm');
-        const showSignupBtn = document.getElementById('showSignup');
-        const showLoginBtn = document.getElementById('showLogin');
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyAJ564oay2U0WPQ8V2p0hGEzY848JlnI9c",
+            authDomain: "peakbaguio-3173a.firebaseapp.com",
+            databaseURL: "https://peakbaguio-3173a-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "peakbaguio-3173a",
+            storageBucket: "peakbaguio-3173a.firebasestorage.app",
+            messagingSenderId: "777024042992",
+            appId: "1:777024042992:web:86b0b9ef0e7e9e102a0f35",
+            measurementId: "G-HWM2K6HG9L"
+        };
 
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        const loginForm = document.querySelector('#loginForm form');
+        const signupForm = document.querySelector('#signupForm form');
+        const showSignupBtn = document.querySelector('#showSignup');
+        const showLoginBtn = document.querySelector('#showLogin');
 
         showSignupBtn.addEventListener('click', () => {
-            loginForm.classList.add('hidden');
-            signupForm.classList.remove('hidden');
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('signupForm').classList.remove('hidden');
         });
 
         showLoginBtn.addEventListener('click', () => {
-            loginForm.classList.remove('hidden');
-            signupForm.classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('signupForm').classList.add('hidden');
         });
 
-        function validateSignIn(event) {
+        signupForm.addEventListener("submit", async (event) => {
             event.preventDefault();
-            const email = document.getElementById('signInEmail').value;
-            const password = document.getElementById('signInPassword').value;
 
-            if (!email || !password) {
-                alert('All fields are required.');
-                return;
-            }
-            if (!email.includes('@')) {
-                alert('Please enter a valid email address. Example: user@example.com');
-                return;
-            }
-            if (password.length < 8) {
-                alert('Password must be at least 8 characters long.');
-                return;
-            }
-            alert('Sign In successful!');
-        }
-
-        function validateSignUp(event) {
-            event.preventDefault();
             const name = document.getElementById('signUpName').value;
             const email = document.getElementById('signUpEmail').value;
             const password = document.getElementById('signUpPassword').value;
 
-            if (!name || !email || !password) {
-                alert('All fields are required.');
-                return;
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                await database.ref("users/" + user.uid).set({ username: name, email: email });
+                alert("Sign Up successful!");
+            } catch (error) {
+                alert(error.message);
             }
-            if (!email.includes('@')) {
-                alert('Please enter a valid email address. Example: user@example.com');
-                return;
-            }
-            if (!isStrongPassword(password)) {
-                alert('Password must be at least 8 characters, include a mix of uppercase, lowercase, numbers, and special characters.');
-                return;
-            }
-            alert('Sign Up successful!');
-        }
+        });
 
-        function isStrongPassword(password) {
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-            return regex.test(password);
-        }
+        loginForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById('signInEmail').value;
+            const password = document.getElementById('signInPassword').value;
+
+            try {
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                alert("Login successful!");
+            } catch (error) {
+                alert(error.message);
+            }
+        });
     </script>
 </body>
-
 </html>
