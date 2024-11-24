@@ -328,17 +328,16 @@
                   <div>
                     <label for="activities" class="block text-sm font-medium text-gray-700">Interest | Preferred Activities:</label>
                     <select id="activities" multiple
-                      class="w-full mt-1 p-2 border rounded-md focus:ring-green-500 focus:border-green-500">
-                      <option value="nature">Nature Walks</option>
-                      <option value="food">Foodie</option>
-                      <option value="culture">Cultural Experiences</option>
-                      <option value="adventure">Adventure Seeker</option>
-                      <option value="relaxation">Relaxation & Wellness</option>
-                      <option value="relaxation">History Buff</option>
-                      <option value="relaxation">Family-friendly</option>
+                        class="w-full mt-1 p-2 border rounded-md focus:ring-green-500 focus:border-green-500">
+                        <option value="nature">Nature Walks</option>
+                        <option value="food">Foodie</option>
+                        <option value="culture">Cultural Experiences</option>
+                        <option value="adventure">Adventure Seeker</option>
+                        <option value="relaxation">Relaxation & Wellness</option>
+                        <option value="history">History Buff</option>
+                        <option value="family">Family-friendly</option> 
                     </select>
-                  </div>
-            
+                </div>      
                   <div>
                     <label for="transportation" class="block font-medium">Preferred Transportation:</label>
                     <select id="transportation" class="w-full border rounded-md px-3 py-2">
@@ -365,9 +364,7 @@
             </div>
     
             <script>
-                document.getElementById('itinerary-form').addEventListener('submit', async function(event) {
-                    event.preventDefault();
-                    
+                async function generatePlan() {
                     const budget = document.getElementById('budget').value;
                     const duration = document.getElementById('duration').value;
                     const startDate = document.getElementById('startDate').value;
@@ -376,6 +373,7 @@
                     const activities = Array.from(document.getElementById('activities').selectedOptions).map(option => option.value);
                     const transportation = document.getElementById('transportation').value;
                     
+                    // Make API call to generate itinerary
                     const response = await fetch('http://localhost:5000/generateitinerary', {
                         method: 'POST',
                         headers: {
@@ -387,17 +385,17 @@
                             startDate,
                             endDate,
                             groupSize,
-                            activities,
-                            transportation
+                            transportation,
+                            activities
                         })
                     });
-                    
+
                     const data = await response.json();
-                    
+
                     if (data.itinerary) {
                         document.getElementById('itinerary-result').classList.remove('hidden');
                         document.getElementById('result-message').innerText = 'Here is your itinerary:';
-                        
+
                         const itineraryList = document.getElementById('itinerary-list');
                         itineraryList.innerHTML = '';  
                         
@@ -406,13 +404,49 @@
                             li.innerText = item;
                             itineraryList.appendChild(li);
                         });
+
+                        // Show the Download and Email buttons
+                        document.getElementById('downloadBtn').addEventListener('click', () => downloadItinerary(data.itinerary));
+                        document.getElementById('emailBtn').addEventListener('click', () => sendEmail(data.itinerary));
                     } else {
                         alert('Error generating itinerary!');
                     }
-                });
-            </script>            
+                }
+
+                function downloadItinerary(itinerary) {
+                    const itineraryContent = itinerary.join('\n');
+                    const blob = new Blob([itineraryContent], { type: 'text/plain' });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = 'itinerary.txt';
+                    link.click();
+                }
+
+                async function sendEmail(itinerary) {
+                    const itineraryContent = itinerary.join('\n');
+                    const email = prompt("Enter your email address:");
+
+                    if (email) {
+                        // Call the backend to send email
+                        await fetch('http://localhost:5000/sendemail', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                email,
+                                itinerary: itineraryContent
+                            })
+                        });
+
+                        alert('Itinerary sent to your email!');
+                    } else {
+                        alert('Please enter a valid email address.');
+                    }
+                }
+            </script>
         </div>
-    </section>            
+    </section>           
 
     <!-- Highlights -->
     <section class="container mx-auto px-4 py-12">
