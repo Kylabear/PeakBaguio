@@ -18,15 +18,23 @@
 </head>
 
 <body class="min-h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('img/regsi.jpg'); font-family: 'Outfit', sans-serif;">
-    <div class="w-full max-w-md bg-white/30 border border-black/20 backdrop-blur-sm text-black p-6 rounded-lg">
+    <div class="w-full max-w-lg bg-white/30 border-22 border-black/20 backdrop-blur-sm text-black p-6 rounded-lg">
 
         <div id="loginForm" class="block">
             <h1 class="text-3xl font-bold text-center mb-4">Sign In</h1>
             <div class="flex justify-center gap-4 mb-6">
-                <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-google-plus'></i></a>
-                <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-facebook'></i></a>
-                <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-github'></i></a>
-                <a href="#" class="p-2 rounded-full border border-white/20 hover:text-gray-300"><i class='bx bxl-linkedin'></i></a>
+                <a href="#" id="googleLogin" class="p-2 rounded-full border border-white/20 hover:text-gray-300">
+                    <i class="bx bxl-google-plus"></i>
+                </a>
+                <a href="#" id="facebookLogin" class="p-2 rounded-full border border-white/20 hover:text-gray-300">
+                    <i class="bx bxl-facebook"></i>
+                </a>
+                <a href="#" id="githubLogin" class="p-2 rounded-full border border-white/20 hover:text-gray-300">
+                    <i class="bx bxl-github"></i>
+                </a>
+                <a href="#" id="linkedinLogin" class="p-2 rounded-full border border-white/20 hover:text-gray-300">
+                    <i class="bx bxl-linkedin"></i>
+                </a>
             </div>
             <p class="text-center mb-4">Or use your email and password</p>
             <form class="space-y-4" id="loginForm" onsubmit="return validateSignIn(event)">
