@@ -300,17 +300,7 @@
                         <option>Luxury Traveler: PHP 4,000 and up/day</option>
                     </select>
                 </div>
-                <div>
-                    <label for="startDate" class="block text-sm font-medium text-gray-700">Travel Start Date:</label>
-                    <input type="date" id="startDate" class="w-full mt-1 p-2 border rounded-md focus:ring-green-500 focus:border-green-500"
-                      required>
-                  </div>
-            
-                  <div>
-                    <label for="endDate" class="block text-sm font-medium text-gray-700">Travel End Date:</label>
-                    <input type="date" id="endDate" class="w-full mt-1 p-2 border rounded-md focus:ring-green-500 focus:border-green-500"
-                      required>
-                  </div>
+                
                   <div class="mb-4">
                       <label class="block text-gray-700">Duration of Stay</label>
                       <select id="duration" class="w-full mt-2 p-2 border rounded">
@@ -386,55 +376,64 @@
             </div>
     
             <script>
-                async function generatePlan() {
-                    const budget = document.getElementById('budget').value;
-                    const duration = document.getElementById('duration').value;
-                    const startDate = document.getElementById('startDate').value;
-                    const endDate = document.getElementById('endDate').value;
-                    const groupSize = document.getElementById('groupSize').value;
-                    const activities = Array.from(document.getElementById('activities').selectedOptions).map(option => option.value);
-                    const transportation = document.getElementById('transportation').value;
-                    
-                    // Make API call to generate itinerary
-                    const response = await fetch('http://localhost:5000/generateitinerary', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            budget,
-                            duration,
-                            startDate,
-                            endDate,
-                            groupSize,
-                            transportation,
-                            activities
-                        })
-                    });
-
+                document.addEventListener("DOMContentLoaded", async () => {
+                    // Fetch field options from the server
+                    const response = await fetch("/api/fields");
                     const data = await response.json();
+                    const budgetSelect = document.getElementById("budget");
+                    const durationSelect = document.getElementById("duration");
+                    const activitiesDiv = document.getElementById("activities");
+        
+                    // Populate budget options
+                    data.budgets.forEach((budget) => {
+                        const option = document.createElement("option");
+                        option.textContent = budget;
+                        option.value = budget;
+                        budgetSelect.appendChild(option);
+                    });
+        
+                    // Populate duration options
+                    data.durations.forEach((duration) => {
+                        const option = document.createElement("option");
+                        option.textContent = duration;
+                        option.value = duration;
+                        durationSelect.appendChild(option);
+                    });
+        
+                    // Populate activities checkboxes
+                    data.interests.forEach((interest) => {
+                        const div = document.createElement("div");
+                        div.innerHTML = `<input type="checkbox" id="${interest}" name="activities" value="${interest}" class="mr-2"><label for="${interest}">${interest}</label>`;
+                        activitiesDiv.appendChild(div);
+                    });
+                });
+        
+                document.getElementById("itinerary-form").addEventListener("submit", async (e) => {
+                    e.preventDefault();
+        
+                    const budget = document.getElementById("budget").value;
+                    const duration = document.getElementById("duration").value;
+                    const activities = Array.from(document.querySelectorAll("input[name='activities']:checked")).map(input => input.value);
+        
+                    const itineraryData = { budget, duration, interest: activities };
+        
+                    const response = await fetch("/api/generate-itinerary", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(itineraryData),
+                    });
+        
+                    const data = await response.json();
+                    alert(data.itinerary); // Show generated itinerary
+                });
 
-                    if (data.itinerary) {
-                        document.getElementById('itinerary-result').classList.remove('hidden');
-                        document.getElementById('result-message').innerText = 'Here is your itinerary:';
-
-                        const itineraryList = document.getElementById('itinerary-list');
-                        itineraryList.innerHTML = '';  
-                        
-                        data.itinerary.forEach(item => {
-                            const li = document.createElement('li');
-                            li.innerText = item;
-                            itineraryList.appendChild(li);
-                        });
 
                         // Show the Download and Email buttons
-                        document.getElementById('downloadBtn').addEventListener('click', () => downloadItinerary(data.itinerary));
-                        document.getElementById('emailBtn').addEventListener('click', () => sendEmail(data.itinerary));
-                    } else {
-                        alert('Error generating itinerary!');
-                    }
-                }
-
+                    document.getElementById('downloadBtn').addEventListener('click', () => downloadItinerary(data.itinerary));
+                    document.getElementById('emailBtn').addEventListener('click', () => sendEmail(data.itinerary));
+                    
                 function downloadItinerary(itinerary) {
                     const itineraryContent = itinerary.join('\n');
                     const blob = new Blob([itineraryContent], { type: 'text/plain' });
