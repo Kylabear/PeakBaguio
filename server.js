@@ -8,8 +8,41 @@ const nodemailer = require('nodemailer'); // For sending emails
 const { auth, db } = require('./firebaseConfig');  // if you're using these
 const pdf = require('pdfkit'); // For generating PDFs
 const fs = require('fs');
-
+const path = require("path");
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
+const users = {
+  "user@example.com": "password123",
+};
+
+// Login route
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  // Validate credentials
+  if (users[email] && users[email] === password) {
+    // Redirect to the main page (index.html) if successful
+    res.redirect("/index.html");
+  } else {
+    // Send error response if login fails
+    res.status(401).send("Invalid email or password. Please try again.");
+  }
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running at http://localhost:${PORT}`);
+});
+
+
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+
 app.use(bodyParser.json());
 
 const openai = new OpenAIApi(new Configuration({ apiKey: 'OPENAI_API_KEY' }));
@@ -152,7 +185,7 @@ app.listen(5000, () => {
 const serviceAccount = require("./path-to-your-serviceAccountKey.json");
 firebaseAdmin.initializeApp({
   credential: firebaseAdmin.credential.cert(serviceAccount),
-  databaseURL: "https://your-project-id.firebaseio.com",
+  databaseURL: "https://console.firebase.google.com/u/0/project/peakbaguio-3173a/database",
 });
 
 // Middleware
@@ -220,7 +253,7 @@ app.listen(3000, () => {
 
 firebaseAdmin.initializeApp({
     credential: firebaseAdmin.credential.applicationDefault(),
-    databaseURL: "https://your-project-id.firebaseio.com",  // Replace with your Firebase URL
+    databaseURL: "https://console.firebase.google.com/u/0/project/peakbaguio-3173a/overview", 
   });
   
   
